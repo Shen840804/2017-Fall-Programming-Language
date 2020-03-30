@@ -1,0 +1,44 @@
+NBA<-read.csv("C:/Users/Shen/Desktop/碩一上課程/國際企業研究方法/Assignment 09/2016-2017 NBA Team stats.csv", header=T, sep=",")
+head(NBA)
+attach(NBA)
+head(NBA)
+NBA.PCA<-prcomp(~WIN.+PTS+FGM+FG.+X3PM+X3P.+FTM+FT.+OREB+DREB+REB+AST+TOV+STL+BLK+PF, data=NBA, center=TRUE, scale=TRUE)
+NBA.PCA
+load=NBA.PCA$rotation
+sorted.loadings=load[order(load[,1]),1] 
+dotchart(sorted.loadings, main="Loading Plot for PC1", xlab="Variable Loadings", cex=0.5, col="#FF0000")
+sorted.loadings=load[order(load[,2]),2] 
+dotchart(sorted.loadings, main="Loading Plot for PC2", xlab="Variable Loadings", cex=0.5, col="#FF3030")
+sorted.loadings=load[order(load[,3]),3] 
+dotchart(sorted.loadings, main="Loading Plot for PC3", xlab="Variable Loadings", cex=0.5, col="#FF4500")
+sorted.loadings=load[order(load[,4]),4] 
+dotchart(sorted.loadings, main="Loading Plot for PC4", xlab="Variable Loadings", cex=0.5, col="#FFA500")
+sorted.loadings=load[order(load[,5]),5] 
+dotchart(sorted.loadings, main="Loading Plot for PC5", xlab="Variable Loadings", cex=0.5, col="#008B00")
+sorted.loadings=load[order(load[,6]),6] 
+dotchart(sorted.loadings, main="Loading Plot for PC6", xlab="Variable Loadings", cex=0.5, col="#6E8B3D")
+sorted.loadings=load[order(load[,7]),7] 
+dotchart(sorted.loadings, main="Loading Plot for PC7", xlab="Variable Loadings", cex=0.5, col="#006400")
+sorted.loadings=load[order(load[,8]),8] 
+dotchart(sorted.loadings, main="Loading Plot for PC8", xlab="Variable Loadings", cex=0.5, col="#556B2F")
+sorted.loadings=load[order(load[,9]),9] 
+dotchart(sorted.loadings, main="Loading Plot for PC9", xlab="Variable Loadings", cex=0.5, col="#483D8B")
+sorted.loadings=load[order(load[,10]),10] 
+dotchart(sorted.loadings, main="Loading Plot for PC10", xlab="Variable Loadings", cex=0.5, col="#00008B")
+sorted.loadings=load[order(load[,11]),11] 
+dotchart(sorted.loadings, main="Loading Plot for PC11", xlab="Variable Loadings", cex=0.5, col="#104E8B")
+sorted.loadings=load[order(load[,12]),12] 
+dotchart(sorted.loadings, main="Loading Plot for PC12", xlab="Variable Loadings", cex=0.5, col="#1E90FF")
+sorted.loadings=load[order(load[,13]),13] 
+dotchart(sorted.loadings, main="Loading Plot for PC13", xlab="Variable Loadings", cex=0.5, col="#104E8B")
+sorted.loadings=load[order(load[,14]),14] 
+dotchart(sorted.loadings, main="Loading Plot for PC14", xlab="Variable Loadings", cex=0.5, col="#68228B")
+sorted.loadings=load[order(load[,15]),15] 
+dotchart(sorted.loadings, main="Loading Plot for PC15", xlab="Variable Loadings", cex=0.5, col="#9A32CD")
+sorted.loadings=load[order(load[,16]),16] 
+dotchart(sorted.loadings, main="Loading Plot for PC16", xlab="Variable Loadings", cex=0.5, col="#000000")
+
+plot(NBA.PCA, type="line", main="Screen Plot for 2016-2017 NBA TEAM")
+NBA.PCA$sdev^2
+biplot(NBA.PCA, choices=1:2)
+summary(NBA.PCA)

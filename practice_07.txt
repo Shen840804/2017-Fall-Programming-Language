@@ -1,0 +1,70 @@
+#Assignment 02
+#1 Using the built-in R data set nhtemp
+#(a)Briefly describe the data set.
+str(nhtemp)
+head(nhtemp)
+
+#(b)Create a histogram of the data set with the following criteria.
+#i.using class intervals of 1 from 44 to 58
+#ii. class intervals should be left-close and right-open
+#iii. add a meaningful main title and x-axis label to the plot
+#iv. on top of each rectangle, label the number of data count in that class interval
+#v. each bar of the histogram should be of the colour ¡§#B4EEB4¡¨ except the tallest bar be of the colour ¡§#698B69¡¨
+breakpts <- seq(46, 56, by = 1) 
+
+ncolours <- length(breakpts) - 1
+bincolours <- vector(mode="character", length = ncolours)
+bincolours[1:ncolours] <- "#B4EEB4"
+bincolours
+a <- hist(nhtemp,
+          breaks = breakpts,
+          right = FALSE
+)
+bincolours[a$counts == max(a$counts)] <- "#698B69"
+bincolours
+
+hist(nhtemp,
+     breaks = breakpts,        # using breaks in 'breakpts'
+     right = FALSE,            # create a histogram on left close and right open intervals
+     labels = TRUE,
+     xlab = "temperatures in degrees Fahrenheit",   # x-axis label
+     main = "Average annual temperature in degrees\n Fahrenheit in New Haven, Connecticut, from 1912 to 1971",
+     col = bincolours
+)
+
+#2 Using the built-in R data set pressure
+#(a)Plot the variables pressure on temperature, and use the following command to pass a curve through these data:
+  curve((0.168 + 0.007*x)^(20/3),
+        from = 0,
+        to = 400,
+        add = TRUE
+  )
+#(b)Apply the power transformation y
+#   3/20 to the pressure data values. Plot these
+#   transformed values against temperature. Is a linear or nonlinear relationship
+#   evident now? Use the abline() function to pass a straight line through the
+#   points. (You need an intercept and slope for this see the previous part of this
+#   question to obtain appropriate values.)
+#(c)Add a suitable title to the graph.
+par(mfrow=c(1,2))
+plot(pressure ~ temperature,
+     data=pressure
+)
+curve((0.168 + 0.007*x)^(20/3),
+      from = 0,
+      to = 400,
+      add = TRUE
+)
+
+y <- (pressure$pressure)^(3/20)
+plot(y ~ pressure$temperature,
+     main = "some meaningful title here",
+     xlab = "temperature",
+     ylab = "pressure^(3/20)"
+)
+curve((0.168 + 0.007*x),
+      from = 0,
+      to = 400,
+      add = TRUE
+)
+par(mfrow=c(1,1))

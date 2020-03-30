@@ -1,0 +1,56 @@
+#2017/12/12 ch6
+a<-matrix()
+for(i in 1:5){
+  print(seq(i: i+4))
+}
+
+Q <- cbind(c(1, 1, 1), c(2, 3, 4), c(6, 7, 8), c(9, 9, 9))
+Q[1:2,1:2]
+Q[c(1:3),1:2]
+Q[c(T,F,T),c(T,T,F,F)]
+
+P<-rbind(c(0.5,0,0.5),c(0.1,0.1,0.8),c(0,1,0))
+order(P[,1])
+order(P[,1],decreasing = FALSE)
+P[order(P[ ,1], decreasing=FALSE), ]
+
+M<-rbind(c(1,2,3,4,5),c(2,3,4,5,6),c(3,4,5,6,7),c(4,5,6,7,8),c(5,6,7,8,9))
+
+cnames<-c("x1","x2","x3","x4")
+colnames(Q)<-cnames
+colnames(Q)
+
+X<-rbind(c(0.3,0.7),c(0.6,0.4))
+ccnames<-c("rainbow","no rainbow")
+rrnames<-c("sunny","rainy")
+colnames(X)<-ccnames
+rownames(X)<-rrnames
+X
+
+diag(P)
+
+diagvec<-rep(x=1,times=5)
+diag(diagvec)
+
+#Obtain the trace of matrix P
+sum(diag(P))
+
+P<-rbind(c(1/4,3/4),c(3/4,1/4))
+P
+P[upper.tri(P,diag = F)]<-0
+P
+
+matrix(0,nrow=2,ncol=2)
+P[lower.tri(P,diag=T)]
+
+UL<-for(i in 1:10){
+  if(i<1.1){
+    print((1:10)/55)}
+  if(1<i & i<9.1){
+    print(rep(1/10,time=10))}
+  if(i>9 &i<10.1){
+    print((10:1)/55)}
+}
+matrix(UL,nrow=10,byrow=T)
+
+UL<-matrix(c((1:10)/55, rep(x=1/10,times=80) ,(10:1)/55),nrow=10,byrow=T)

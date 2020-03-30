@@ -1,0 +1,145 @@
+#Assignment03
+
+#Q1
+#可以被9整除又是6的倍數即是18的倍數
+#法一
+for(i in 1200:4300){   
+    if(i%%18==0){    #若i可被18整除就print出來,可求出1200到4300所有可被18整除的數
+      print(i)}
+}
+
+#法二
+x<-1200:4300  
+y<-x%%18
+sum(y=="0")   #計算1200:4300可被18整除的總數
+
+#法三
+sum(1200:4300%%18=="0")  #計算1200:4300可被18整除的總數
+
+
+#Q2
+Q2<-function(x){
+  if(-1<=x & x<-0.5){
+    return(x)
+  }else if(0.5<x & x<=1){
+    return(x^2)
+  }else if(-0.5<=x & x<=0.5){
+    return(x^3)
+  }else{
+    print("x的範圍界在-1至1,請重新輸入")}
+}
+a<-curve(x^3,-0.5,0.5)
+b<-curve(x^2,-0.5,1)
+d<-curve(x,-1,-0.5)
+
+xobs <- seq(from=-1, to=1, by=0.01)
+yobs <- vector(mode="numeric", length=length(xobs))
+logicalvec <- (xobs < -0.5)
+yobs[logicalvec] <- xobs[logicalvec]
+logicalvec <- (xobs > 0.5)
+yobs[logicalvec] <- (xobs[logicalvec])^2
+logicalvec <- (xobs < -0.5 | xobs > 0.5)
+yobs[logicalvec] <- (xobs[!logicalvec])^3
+plot(xobs, yobs,
+     main="plot y = f(x) in Assignment 3 Question 2",
+     ylab="f(x)",
+     xlab="x"
+)
+
+    
+#Q3
+n<-9
+for (i in 1:n){
+  for (j in 1) {
+      answer<-paste(
+      c(rep("*", i),
+        rep(" ", n-i)),
+      collapse="")
+      print(answer,quote=FALSE)
+     }
+}
+
+n<-9
+for (i in 1:n){
+  if(i<5.99){
+    answer1<-paste(
+      rep("*", i),
+      collapse="")
+    print(answer1,quote=FALSE)
+  }else if(i>5.99){
+    answer2<-paste(
+      rep("*", 10-i),
+      collapse="")
+   print(answer2,quote=FALSE)}
+}
+
+n<-9
+for (i in 1:1){
+  for (j in 1:n){
+  if(j<5.99){
+    answer1<-paste(
+      rep("*", j),
+      collapse="")
+    print(answer1,quote=FALSE)
+  }else if(j>5.99){
+    answer2<-paste(
+      rep("*", 10-j),
+      collapse="")
+    print(answer2,quote=FALSE)}
+  }
+}
+
+#完成
+
+Q3<-function(h){
+  if(h/2==0){       #if h is a even number
+  for(i in 1:1){
+    for(j in 1:h){
+      if(j<=h/2+1){
+      answer1<-paste(
+        rep("*", j),
+        collapse="")
+      print(answer1,quote=FALSE)
+    }else{
+      answer2<-paste(
+        rep("*", h-j+1),
+        collapse="")
+    print(answer2,quote=FALSE)}
+    }
+  }
+  }else{        #if h is not a even number
+    for(i in 1:1){
+      for(j in 1:h){
+        if(j<=h/2){
+          answer1<-paste(
+            rep("*", j),
+            collapse="")
+          print(answer1,quote=FALSE)
+        }else{
+          answer2<-paste(
+            rep("*", h-j+1),
+            collapse="")
+          print(answer2,quote=FALSE)}
+      }
+    }
+  }
+}
+
+
+Q3<-function(h){
+  for(i in 1:h){
+    if(i <= h/2){
+      for(j in i){
+      answer1<-paste(
+        rep("*", i),
+        collapse="")
+      print(answer1,quote=FALSE)}
+    }else{
+      for(j in h-i){
+        answer2<-paste(
+          rep("*", j),
+          collapse="")
+        print(answer2,quote=FALSE)}
+    }
+  }
+}

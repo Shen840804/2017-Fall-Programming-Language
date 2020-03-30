@@ -1,0 +1,48 @@
+#Q1
+Q1.csv<-"C:/Users/Shen/Desktop/2017_midterms/dinnerlist.csv"
+Q1<-read.table(Q1.csv,sep = ",",header=TRUE,as.is = TRUE)
+#(a)
+varname<-names(Q1)
+varname
+#(b)
+nobs<-length(Q1[,1])
+nobs
+#(c)
+sum(Q1[,2]=="spaghetti"&Q1[,3]=="beer")
+#(d)
+breakpts<-seq(15,60,by=5)
+ncolours<-length(breakpts)-1
+bincolours<-vector(mode = "character",length = ncolours)
+a<-hist(Q1$Cost,
+     breaks=breakpts,
+     right=FALSE,
+     labels=TRUE,
+     xlab="Cost",
+     main="The distribution of the dinner cost")
+
+bincolours[a$counts<10.1]<-"#000000"
+bincolours[a$counts>10.1]<-"white"
+
+hist(Q1$Cost,
+     breaks=breakpts,
+     right=FALSE,
+     labels=TRUE,
+     xlab="Cost",
+     main="The distribution of the dinner cost",
+     col = bincolours
+     )
+
+
+#Q2
+P<-rbind(c(0.2,0.7,0.1),c(0.4,0.6,0),c(0,0,1))
+n<-123
+for(i in 1:n){
+  print(P%*%P)
+}
+
+  
+  
+#Q3
+for(i in 1:7){
+  assign(sprintf("x%d",i),c(1+i,2+i,4+i,6+i))
+}

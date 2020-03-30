@@ -1,0 +1,13 @@
+#20171226
+UL<-matrix(c((1:10)/55, rep(x=1/10,times=80) ,(10:1)/55),nrow=10,byrow=T)
+LR<-matrix(c((5:1)/15, rep(x=0.2,times=15) ,(1:5)/15),nrow=5,byrow=T)
+M1<-matrix(c(UL,rep(x=0,times=50)),nrow=10,byrow = F)
+M2<-matrix(c(rep(x=0,times=50),LR),nrow=5,byrow = F)
+M<-matrix(c(M1,M2),nrow=15,byrow = F)
+M<-rbind(M1,M2)
+i<-2
+Q<-M%*%M
+while(i<4){
+  i<-i+1
+  M<-M%*%Q
+}

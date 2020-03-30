@@ -1,0 +1,116 @@
+NBA<-read.csv("C:/Users/Shen/Desktop/碩一上課程/國際企業研究方法/Assignment 09/2016-2017 NBA Team stats.csv", header=T, sep=",")
+
+head(NBA)
+NBA$PTS
+sort(NBA$PTS)
+breakpts <- seq(96, 117, by = 1)
+ncolours <- length(breakpts) - 1
+bincolours <- vector(mode="character", length = ncolours)
+bincolours[1:ncolours] <- "#B4EEB4"
+bincolours
+a <- hist(NBA$PTS,
+          breaks = breakpts,
+          right = FALSE
+)
+bincolours[a$counts == max(a$counts)] <- "#698B69"
+bincolours
+
+hist(NBA$PTS,
+     breaks = breakpts,        # using breaks in 'breakpts'
+     right = FALSE,            # create a histogram on left close and right open intervals
+     labels = TRUE,
+     xlab = "PTS",   # x-axis label
+     main = "Each team score per game in 2016~2017 season",
+     col = bincolours
+)
+
+barplot(NBA$PTS,
+        beside = TRUE,  #將資料拆開並排
+        legend = FALSE,
+        ylab = "Points",
+        main = "Each team score per game in 2016~2017 season"
+)
+
+ggplot(NBA,aes(x=PTS))+geom_histogram(binwidth=5)
+ggplot(NBA,aes(x=count,fill=PTS))+
+  geom_histogram(binwidth=50)+labs(x=" ")
+
+t.test(NBA$PTS,alternative = "two.sided",mu=100)
+
+ggplot(data.frame(x=randT))+
+geom_density(aes(x=x),fill="grey",color="grey")+
+geom_vline(xintercept=PTSttest$statistic)+
+geom_vline(xintercept=mean(randT)+c(-2,2)*sd(randT),linetype=2)  
+
+LM<-lm(PTS~W,data=NBA)
+summary(LM)
+
+housing<-read.table("http://www.jaredlander.com/data/housing.csv",
+                    sep = ",", header = TRUE,
+                    stringsAsFactors = FALSE)
+names(housing)<-c("Neighborhood","Class","Units","YearBuilt",
+                  "SqFt","Income","IncomePerSqFt","Expense",
+                  "ExpensePerSqFt","NetIncome","Value",
+                  "ValuePerSqFt","Boro")
+ggplot(housing,aes(x=ValuePerSqFt))+
+  geom_histogram(binwidth=10)+labs(x="Value per Square Foot")
+
+ggplot(housing,aes(x=ValuePerSqFt,fill=Boro))+
+  geom_histogram(binwidth=10)+labs(x="Value per Square Foot")
+  
+ggplot(housing,aes(x=ValuePerSqFt,fill=Boro))+
+  geom_histogram(binwidth=10)+labs(x="Value per Square Foot")+
+  facet_wrap(~Boro)
+
+ggplot(housing,aes(x=SqFt))+geom_histogram()
+
+ggplot(housing,aes(x=Units))+geom_histogram()
+
+ggplot(housing[housing$Units<1000, ],aes(x=SqFt))+
+  geom_histogram()
+  
+ggplot(housing[housing$Units<1000, ],aes(x=Units))+
+  geom_histogram()
+
+ggplot(housing,aes(x=SqFt, y=ValuePerSqFt))+geom_point()
+
+ggplot(housing,aes(x=Units, y=ValuePerSqFt))+geom_point()
+
+ggplot(housing[housing$Units<1000, ],aes(x=SqFt, y=ValuePerSqFt))+
+  geom_point()
+  
+ggplot(housing[housing$Units<1000, ],aes(x=Units, y=ValuePerSqFt))+
+  geom_point()
+
+sum(housing$Units>=1000)
+
+#把它們(單位個數超過1000的建築)移除掉
+housing<-housing[housing$Units<1000, ]
+
+#繪製ValuePerSqFt對SqFt的散佈圖
+ggplot(housing,aes(x=SqFt, y=ValuePerSqFt))+geom_point()
+ggplot(housing,aes(x=log(SqFt), y=ValuePerSqFt))+geom_point()
+ggplot(housing,aes(x=SqFt, y=log(ValuePerSqFt)))+geom_point()
+ggplot(housing,aes(x=log(SqFt), y=log(ValuePerSqFt)))+geom_point()
+
+#繪製ValuePerSqFt對Units的散佈圖
+ggplot(housing,aes(x=Units, y=ValuePerSqFt))+geom_point()
+ggplot(housing,aes(x=log(Units), y=ValuePerSqFt))+geom_point()
+ggplot(housing,aes(x=Units, y=log(ValuePerSqFt)))+geom_point()
+ggplot(housing,aes(x=log(Units), y=log(ValuePerSqFt)))+geom_point()
+
+house1<-lm(ValuePerSqFt~Units+SqFt+Boro,data=housing)
+summary(house1)
+
+#車牌號碼 License plate number
+make.plates <- function(num.plates) {
+  plate.vec <- vector("character", length = num.plates)
+  for(i in 1:num.plates) {
+    chars <- sample(LETTERS, 3, replace = TRUE)
+    nums <- sample(0:9, 4,replace = TRUE)
+    chars <- paste(chars, collapse = "")
+    nums <- paste(nums, collapse = "")
+    plate.vec[i] <- paste(chars,nums, sep = "-", collapse = "")
+  }
+  return(plate.vec)
+}

@@ -1,0 +1,31 @@
+#讀取資料
+NBA<-read.csv("C:/Users/Shen/Desktop/碩一上課程/國際企業研究方法/Assignment 09/2016-2017 NBA Team stats.csv", header=T, sep=",")
+
+head(NBA)
+#選擇每場得分、每場三分球命中數、每場總籃板及每場總失誤四個變數進行主成份分析
+NBA.PCA<-prcomp(~PTS+X3PM+REB+TOV, data=NBA, center=TRUE, scale=TRUE)
+
+#主成份分析後萃取出的四個因子
+NBA.PCA
+
+#萃取轉軸後的因素負荷量
+load=NBA.PCA$rotation
+#將因素負荷量排序
+#繪製因素負荷量點圖
+sorted.loadings=load[order(load[,1]),1] 
+dotchart(sorted.loadings, main="Loading Plot for PC1", xlab="Variable Loadings", cex=1.5, col="#FF0000")
+sorted.loadings=load[order(load[,2]),2] 
+dotchart(sorted.loadings, main="Loading Plot for PC2", xlab="Variable Loadings", cex=1.5, col="#008B00")
+sorted.loadings=load[order(load[,3]),3] 
+dotchart(sorted.loadings, main="Loading Plot for PC3", xlab="Variable Loadings", cex=1.5, col="#00008B")
+sorted.loadings=load[order(load[,4]),4] 
+dotchart(sorted.loadings, main="Loading Plot for PC4", xlab="Variable Loadings", cex=1.5, col="#000000")
+
+#繪製陡坡圖
+plot(NBA.PCA, type="line", main="Screen Plot for 2016-2017 NBA TEAM")
+#因子的標準差平方就是特徵值
+NBA.PCA$sdev^2
+#因素負荷量圖
+biplot(NBA.PCA, choices=1:2)
+#主成份分析摘要，包含解釋變異量
+summary(NBA.PCA)
