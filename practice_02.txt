@@ -1,0 +1,8 @@
+x0<-3 #see
+n<-20
+m<-17
+b<-4
+rdigit<-vector(mode="numeric",length = n) #預留長度為n的數值向量
+rdigit[1]<-b*x0%%m  #x1
+for(i in 2:n){
+  rdigit[i]<-b*rdigit[i-1]%%m }   #xi a%%b 取a除b的餘數

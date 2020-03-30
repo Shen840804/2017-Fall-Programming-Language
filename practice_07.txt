@@ -1,70 +1,56 @@
-#Assignment 02
-#1 Using the built-in R data set nhtemp
-#(a)Briefly describe the data set.
-str(nhtemp)
-head(nhtemp)
+#2017/12/12 ch6
+a<-matrix()
+for(i in 1:5){
+  print(seq(i: i+4))
+}
 
-#(b)Create a histogram of the data set with the following criteria.
-#i.using class intervals of 1 from 44 to 58
-#ii. class intervals should be left-close and right-open
-#iii. add a meaningful main title and x-axis label to the plot
-#iv. on top of each rectangle, label the number of data count in that class interval
-#v. each bar of the histogram should be of the colour ¡§#B4EEB4¡¨ except the tallest bar be of the colour ¡§#698B69¡¨
-breakpts <- seq(46, 56, by = 1) 
+Q <- cbind(c(1, 1, 1), c(2, 3, 4), c(6, 7, 8), c(9, 9, 9))
+Q[1:2,1:2]
+Q[c(1:3),1:2]
+Q[c(T,F,T),c(T,T,F,F)]
 
-ncolours <- length(breakpts) - 1
-bincolours <- vector(mode="character", length = ncolours)
-bincolours[1:ncolours] <- "#B4EEB4"
-bincolours
-a <- hist(nhtemp,
-          breaks = breakpts,
-          right = FALSE
-)
-bincolours[a$counts == max(a$counts)] <- "#698B69"
-bincolours
+P<-rbind(c(0.5,0,0.5),c(0.1,0.1,0.8),c(0,1,0))
+order(P[,1])
+order(P[,1],decreasing = FALSE)
+P[order(P[ ,1], decreasing=FALSE), ]
 
-hist(nhtemp,
-     breaks = breakpts,        # using breaks in 'breakpts'
-     right = FALSE,            # create a histogram on left close and right open intervals
-     labels = TRUE,
-     xlab = "temperatures in degrees Fahrenheit",   # x-axis label
-     main = "Average annual temperature in degrees\n Fahrenheit in New Haven, Connecticut, from 1912 to 1971",
-     col = bincolours
-)
+M<-rbind(c(1,2,3,4,5),c(2,3,4,5,6),c(3,4,5,6,7),c(4,5,6,7,8),c(5,6,7,8,9))
 
-#2 Using the built-in R data set pressure
-#(a)Plot the variables pressure on temperature, and use the following command to pass a curve through these data:
-  curve((0.168 + 0.007*x)^(20/3),
-        from = 0,
-        to = 400,
-        add = TRUE
-  )
-#(b)Apply the power transformation y
-#   3/20 to the pressure data values. Plot these
-#   transformed values against temperature. Is a linear or nonlinear relationship
-#   evident now? Use the abline() function to pass a straight line through the
-#   points. (You need an intercept and slope for this see the previous part of this
-#   question to obtain appropriate values.)
-#(c)Add a suitable title to the graph.
-par(mfrow=c(1,2))
-plot(pressure ~ temperature,
-     data=pressure
-)
-curve((0.168 + 0.007*x)^(20/3),
-      from = 0,
-      to = 400,
-      add = TRUE
-)
+cnames<-c("x1","x2","x3","x4")
+colnames(Q)<-cnames
+colnames(Q)
 
-y <- (pressure$pressure)^(3/20)
-plot(y ~ pressure$temperature,
-     main = "some meaningful title here",
-     xlab = "temperature",
-     ylab = "pressure^(3/20)"
-)
-curve((0.168 + 0.007*x),
-      from = 0,
-      to = 400,
-      add = TRUE
-)
-par(mfrow=c(1,1))
+X<-rbind(c(0.3,0.7),c(0.6,0.4))
+ccnames<-c("rainbow","no rainbow")
+rrnames<-c("sunny","rainy")
+colnames(X)<-ccnames
+rownames(X)<-rrnames
+X
+
+diag(P)
+
+diagvec<-rep(x=1,times=5)
+diag(diagvec)
+
+#Obtain the trace of matrix P
+sum(diag(P))
+
+P<-rbind(c(1/4,3/4),c(3/4,1/4))
+P
+P[upper.tri(P,diag = F)]<-0
+P
+
+matrix(0,nrow=2,ncol=2)
+P[lower.tri(P,diag=T)]
+
+UL<-for(i in 1:10){
+  if(i<1.1){
+    print((1:10)/55)}
+  if(1<i & i<9.1){
+    print(rep(1/10,time=10))}
+  if(i>9 &i<10.1){
+    print((10:1)/55)}
+}
+matrix(UL,nrow=10,byrow=T)
+
+UL<-matrix(c((1:10)/55, rep(x=1/10,times=80) ,(10:1)/55),nrow=10,byrow=T)

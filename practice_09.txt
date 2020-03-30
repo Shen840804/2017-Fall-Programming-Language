@@ -1,40 +1,15 @@
-#12/5 ch5 p.22 exercise
-m<-10000
-set.seed(20171205)
-avec<-rbinom(n=m,size=20,prob=0.3)
-#(a)家览
-sum(avec<5.1)/m
-#(a)瞶阶
-pbinom(q=5,size=20,prob=0.3)
-#(b)家览
-sum(result<5.1 & result>4.9)/m
-#(b)瞶阶
-dbinom(x=5,size=20,prob=0.3)
-#(c)家览
-mean(avec)
-#(d)家览
-(sd(avec))^2
-#(e)家览
-quantile(avec,p=c(0.05,0.95))
-#(e)
-pbinom(0:20,size=20,p=0.3) #P(X<0) P(X<1) P(X<2)...P(X<9) ~ 0.95
+#p.12-2
+sport<-c("Hockey","Baseball","Football")
+league<-c("NHL","MLB","NFL")
+trophy<-c("Stanley Cup","Commisioner's Trophy","Vince Lombardi Trophy")
+trophies1<-cbind(sport,league,trophy)
 
-#P.26
-n <- 100000
-u <- runif(n, min=2, max=4)
-(4 - 2)*sum(sin(u))/n
-
-#P.29
-#g(x)=exp^-(x+1)^2
-#f(x)=exp^-x
-#sum(g(x)/f(x))
-
-#P.30
-#1.
-n <- 100000
-u <- runif(n, min=0, max=1)
-(1 - 0)*sum((u))/n
-#2.
-n <- 100000
-u <- runif(n, min=1, max=3)
-(3 - 1)*sum((u)^2)/n
+trophies2<-data.frame(sport=c("Basketball","Golf"),
+                      league=c("NBA","PGA"),
+                      trophy=c("Larry O'Brien Championship","Wanamaker Trophy"),
+                      stringsAsFactors = FALSE
+                      )
+#p.12-3
+download.file(url="http://jaredlander.com/data/US_Foreign_Aid.zip",
+              destfile="ForeignAid.zip")
+unzip("ForeignAid.zip",exdir="data12")

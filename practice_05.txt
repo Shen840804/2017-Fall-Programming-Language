@@ -1,35 +1,40 @@
-n<-10
-truefalsetest<-function(n){
-   u<-runif(n,min=0,max=1)
-   sim.trials<-u>0.5
-   return(sum(sim.trials))}
-   for(i in 1:3){
-       print(truefalsetest(n))}
-   
+#12/5 ch5 p.22 exercise
+m<-10000
+set.seed(20171205)
+avec<-rbinom(n=m,size=20,prob=0.3)
+#(a)模擬值
+sum(avec<5.1)/m
+#(a)理論值
+pbinom(q=5,size=20,prob=0.3)
+#(b)模擬值
+sum(result<5.1 & result>4.9)/m
+#(b)理論值
+dbinom(x=5,size=20,prob=0.3)
+#(c)模擬值
+mean(avec)
+#(d)模擬值
+(sd(avec))^2
+#(e)模擬值
+quantile(avec,p=c(0.05,0.95))
+#(e)
+pbinom(0:20,size=20,p=0.3) #P(X<0) P(X<1) P(X<2)...P(X<9) ~ 0.95
 
-truefalsetest2<-function(m1=20,m2=50){
-   u<-runif(n=m1*m2,min=0,max=1)   #m1是整數,
-   simresult50<-u>0.5
-   simresult50<-matrix(simresult50,byrow=T,ncol=m1)
-   v=rowSums(simresult50)
-   v=100*v/m1
-   return(c(mean(v),sd(v)))}
+#P.26
+n <- 100000
+u <- runif(n, min=2, max=4)
+(4 - 2)*sum(sin(u))/n
 
-truefalsetest2<-function(m1=20,m2=50){
-   u<-runif(n=m1*m2,min=0,max=1)   #m1是整數,
-   simresult50<-u>0.5
-   simresult50<-matrix(simresult50,byrow=T,ncol=m1)
-   v=rowSums(simresult50)
-   v=100*v/m1    #每位得分%格式
-   return(sum(v>30)/m2)}
+#P.29
+#g(x)=exp^-(x+1)^2
+#f(x)=exp^-x
+#sum(g(x)/f(x))
 
-truefalsetest2<-function(m1=20,m2=50){
-   u<-runif(n=m1*m2,min=0,max=1)   #m1是是題目個數
-   simresult50<-u>0.5
-   simresult50<-matrix(simresult50,byrow=T,ncol=m1)
-   return(sum(rowSums(simresult50)>(20*0.3-0.0001))/m2)}
-   m3<-3
-   for(i in 1:m3){
-     print(truefalsetest2())}
-   
-0<sum(rbinom(n=24,size=25,p=0.15)>5) 
+#P.30
+#1.
+n <- 100000
+u <- runif(n, min=0, max=1)
+(1 - 0)*sum((u))/n
+#2.
+n <- 100000
+u <- runif(n, min=1, max=3)
+(3 - 1)*sum((u)^2)/n

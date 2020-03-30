@@ -1,0 +1,18 @@
+myfun<-function(x){
+  
+  if(0<x & x<=3){
+    return(3*x+2)}
+  else if(3<x & x<=6){
+      return(2*x-0.5*(x^2))}
+  else{
+    print("x的範圍界在0到6,請重新輸入")}
+}
+
+
+myfun<-function(x){
+  
+  if(x<=3){
+    return(3*x+2)}
+  else{
+    return(2*x-0.5*(x^2))}
+}
